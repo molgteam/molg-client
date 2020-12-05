@@ -3,10 +3,9 @@ const config = require('config');
 const { DefinePlugin, HotModuleReplacementPlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-console.log(config.get('webpack.mode'));
 module.exports = {
   entry: {
-    app: './app/app.js',
+    app: './app/index.js',
   },
   output: {
     filename: '[name].js',
@@ -33,7 +32,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      // '@envoy': path.resolve(__dirname, 'apps/envoy'),
+      '@app': path.resolve(__dirname, 'app'),
     },
     extensions: ['.js', '.jsx', '.json'],
   },

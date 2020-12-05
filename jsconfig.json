@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      // "@envoy/*": ["./apps/envoy/*"],
+      "@app/*": ["./app/*"],
     },
     "jsx": "react",
     "esModuleInterop": true,

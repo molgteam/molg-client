@@ -9,7 +9,7 @@ module.exports = {
     watch: false,
     vars: {
       path: {
-        app: 'app/app.js',
+        app: '/app.js',
       },
     },
   },

@@ -10,10 +10,10 @@
     "airbnb"
   ],
   "plugins": [
-    "react",
-    "prettier"
+    "react"
   ],
   "rules": {
+    "import/no-unresolved": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
