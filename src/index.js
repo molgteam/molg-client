@@ -1,5 +1,5 @@
+import '@app/styles/wg.css';
 import '@app/styles/style.css';
-import 'normalize.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
