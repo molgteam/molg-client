@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // "@envoy/*": ["./apps/envoy/*"],
+    },
+    "jsx": "react",
+    "esModuleInterop": true,
+    "target": "ES5",
+  }
+}
