@@ -18,7 +18,10 @@
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "template-curly-spacing": ["off"],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "import/prefer-default-export": "off",
+    "func-names": "off",
+    "camelcase": "off"
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -27,5 +30,7 @@
     "ecmaVersion": 2015,
     "sourceType": "module"
   },
-  "globals": {}
+  "globals": {
+    "IG": true
+  }
 }

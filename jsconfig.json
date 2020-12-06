@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["./app/*"],
+      "@modules/*": ["./modules/*"]
+    },
+    "jsx": "react",
+    "esModuleInterop": true,
+    "target": "ES5",
+  }
+}
