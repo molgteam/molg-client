@@ -1,29 +1,29 @@
 import * as ActionTypes from '@app/data/rootAcionType';
 
-export function updateUser(user) {
+export function updateUsername(username) {
   return {
-    type: ActionTypes.UPDATE_USER,
-    payload: {user},
+    type: ActionTypes.UPDATE_USERNAME,
+    username,
   };
 }
 
-export function requestSearchUser(user) {
+export function requestSearchUsername(username) {
   return {
-    type: ActionTypes.SEARCH_USER_REQUEST,
-    user,
+    type: ActionTypes.REQUEST_SEARCH_USERNAME,
+    username,
   };
 }
 
-export function successSearchUser(data) {
+export function successSearchUsername(data) {
   return {
-    type: ActionTypes.SEARCH_USER_SUCCESS,
-    payload: {...data},
+    type: ActionTypes.SUCCESS_SEARCH_USERNAME,
+    data,
   };
 }
 
-export function failureSearchUser(errorMessage) {
+export function failureSearchUsername(errorMessage) {
   return {
-    type: ActionTypes.SEARCH_USER_FAILURE,
-    payload: {errorMessage},
+    type: ActionTypes.FAILURE_SEARCH_USERNAME,
+    errorMessage,
   };
 }

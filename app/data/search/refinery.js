@@ -1,4 +1,4 @@
-function refineUser({user}, index) {
+function refineUser({ user }, index) {
   if (!user) return false;
 
   return {
@@ -14,7 +14,7 @@ function refineUser({user}, index) {
   };
 }
 
-export default function applyStep(data) {
+export function refineUserList(data) {
   const result = {};
   result.status = data.status;
   result.userList = data.users.map(refineUser).filter((v) => !!v);

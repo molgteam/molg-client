@@ -1,13 +1,16 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import * as ActionTypes from '@app/data/rootAcionType';
 
 function searchingUser(state = '', action = {}) {
   switch (action.type) {
-    case ActionTypes.UPDATE_USER: {
-      return action.payload.user;
+    case ActionTypes.UPDATE_USERNAME: {
+      return action.username;
     }
-    case ActionTypes.RESET_USER: {
+    case ActionTypes.RESET_USERNAME: {
       return '';
+    }
+    case ActionTypes.FETCH_USER: {
+      return action.username;
     }
     default:
       return state;
@@ -20,21 +23,19 @@ const initialUserList = {
   errorMessage: '',
 };
 
-function userInfo(state = initialUserList, action = {}) {
+function result(state = initialUserList, action = {}) {
   switch (action.type) {
-    case ActionTypes.SEARCH_USER_REQUEST: {
-      return {...state, isLoading: true};
+    case ActionTypes.REQUEST_SEARCH_USERNAME: {
+      return { ...state, isLoading: true };
     }
-    case ActionTypes.SEARCH_USER_SUCCESS: {
+    case ActionTypes.SUCCESS_SEARCH_USERNAME: {
       const {
-        payload: {userList},
+        data: { userList },
       } = action;
-      return {...state, isLoading: false, userList};
+      return { ...state, isLoading: false, userList };
     }
-    case ActionTypes.SEARCH_USER_FAILURE: {
-      const {
-        payload: {errorMessage},
-      } = action;
+    case ActionTypes.FAILURE_SEARCH_USERNAME: {
+      const { errorMessage } = action;
       return {
         ...state,
         isLoading: false,
@@ -47,4 +48,4 @@ function userInfo(state = initialUserList, action = {}) {
   }
 }
 
-export default combineReducers({searchingUser, userInfo});
+export default combineReducers({ searchingUser, result });

@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '@app/data/rootAction';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+import * as actions from '@app/data/rootAction';
 
 const Header = (props) => {
   const { search } = props;
-  const { searchingUser, userInfo } = search;
-  const { isLoading, userList } = userInfo;
+  const { searchingUser, result } = search;
+  const { isLoading, userList } = result;
+
+  const fetchUser = useCallback(({ pk, username }) => {
+    props.actions.fetchUser({ pk, username });
+  }, []);
 
   return (
     <header>
@@ -14,8 +19,7 @@ const Header = (props) => {
         <div>햄버거</div>
         <div className="inner-seach">
           <div className="search-content">
-            <input type="text" onChange={(e) => props.actions.updateUser(e.target.value)} value={searchingUser} />
-            <button type="button">찾기</button>
+            <input type="text" onChange={(e) => props.actions.updateUsername(e.target.value)} value={searchingUser} />
           </div>
           <div
             className="inner-search-result"
@@ -29,13 +33,13 @@ const Header = (props) => {
             {isLoading
               ? <div>loading...</div>
               : userList.map(({ username, pk, index }) => (
-                <p key={pk}>
+                <Link to={`/feed/${username}`} key={pk} onClick={() => fetchUser({ pk, username })}>
                   {index}
                   {' '}
                   /
                   {' '}
                   {username}
-                </p>
+                </Link>
               ))}
           </div>
         </div>

@@ -4,9 +4,9 @@ module.exports = {
     mode: 'production',
     devtool: false,
     definitions: {
-      'ORIGIN': 'https://molg.kr',
+      NODE_ENV: JSON.stringify('production'),
+      ORIGIN: 'https://molg.kr',
       'IG.URL': JSON.stringify('https://www.instagram.com'),
-      'IG.SEARCH': JSON.stringify('https://www.instagram.com/web/search/topsearch/'),
     },
     watch: false,
     vars: {

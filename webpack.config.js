@@ -1,6 +1,6 @@
 const path = require('path');
 const config = require('config');
-const {DefinePlugin, HotModuleReplacementPlugin} = require('webpack');
+const { DefinePlugin, HotModuleReplacementPlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -11,6 +11,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   mode: config.get('webpack.mode'),
   module: {

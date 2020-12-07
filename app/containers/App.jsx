@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Route, Switch,
+} from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as action from '@app/data/rootAction';
 import history from '@modules/history';
 import Home from '@app/containers/Home';
 import NotFound from '@app/components/NotFound';
 import Header from './Header';
+import Feed from './Feed';
+import RecommendFeed from './RecommendFeed';
 
 const App = (props) => {
   useEffect(() => {
@@ -17,6 +21,8 @@ const App = (props) => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/feed" component={RecommendFeed} />
+        <Route path="/feed/:username" component={Feed} />
         <Route component={NotFound} />
       </Switch>
       <footer>footer</footer>
