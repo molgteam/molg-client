@@ -6,7 +6,7 @@ import 'regenerator-runtime/runtime';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import App from '@app/containers/App';
 import configureStore from '@app/store/configureStore';
 
@@ -17,6 +17,6 @@ if (rootElement) {
     <Provider store={configureStore()}>
       <App />
     </Provider>,
-    rootElement
+    rootElement,
   );
 }
