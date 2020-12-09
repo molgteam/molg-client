@@ -38,3 +38,17 @@ export async function checkUserStory(pk) {
   const { data } = await request();
   return data;
 }
+
+export async function getMoreFeeds({ pk, endCursor }) {
+  const params = {
+    query_hash: '42323d64886122307be10013ad2dcc44',
+    variables: JSON.stringify({ id: pk, first: 12, after: endCursor }),
+  };
+  const request = utils.divideEnv(
+    () => axios.get(utils.appendQueryString(`${IG.URL}/graphql/query`, params)),
+    mockData,
+  );
+
+  const { data } = await request();
+  return data;
+}

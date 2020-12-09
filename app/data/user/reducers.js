@@ -19,12 +19,28 @@ function status(state = API.INITIAL, action = {}) {
   }
 }
 
+function isLoadingMoreFeeds(state = false, action = {}) {
+  switch (action.type) {
+    case ActionTypes.REQUEST_FETCH_MORE_FEEDS:
+      return true;
+    case ActionTypes.SUCCESS_FETCH_MORE_FEEDS:
+      return false;
+    case ActionTypes.FAILURE_FETCH_MORE_FEEDS:
+      return false;
+    default:
+      return state;
+  }
+}
+
 const initialInfoState = {
   pk: null,
   hasStory: false,
 };
 function info(state = initialInfoState, action = {}) {
   switch (action.type) {
+    case ActionTypes.FETCH_USER: {
+      return { ...state, ...action.payload };
+    }
     case ActionTypes.REQUEST_FETCH_USER: {
       const { pk } = action;
       return { ...state, pk };
@@ -53,6 +69,11 @@ function feedInfo(state = initialFeedListState, action = {}) {
       const { count, feedList } = userInfo;
       return { ...state, count, feedList };
     }
+    case ActionTypes.SUCCESS_FETCH_MORE_FEEDS: {
+      const { userInfo } = action;
+      const { count, feedList } = userInfo;
+      return { ...state, count, feedList: [...state.feedList, ...feedList] };
+    }
     case ActionTypes.FAILURE_FETCH_USER: {
       return { ...state, feedList: [], count: 0 };
     }
@@ -78,6 +99,13 @@ function pageInfo(state = initialPageInfoState, action = {}) {
       } = userInfo;
       return { ...state, endCursor, hasNextPage };
     }
+    case ActionTypes.SUCCESS_FETCH_MORE_FEEDS: {
+      const { userInfo } = action;
+      const {
+        pageInfo: { endCursor, hasNextPage },
+      } = userInfo;
+      return { ...state, endCursor, hasNextPage };
+    }
     case ActionTypes.FAILURE_FETCH_USER: {
       return { ...state, endCursor: '', hasNextPage: false };
     }
@@ -92,4 +120,5 @@ export default combineReducers({
   info,
   feedInfo,
   pageInfo,
+  isLoadingMoreFeeds,
 });

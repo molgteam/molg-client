@@ -9,8 +9,8 @@ const Header = (props) => {
   const { searchingUser, result } = search;
   const { isLoading, userList } = result;
 
-  const fetchUser = useCallback(({ pk, username }) => {
-    props.actions.fetchUser({ pk, username });
+  const fetchUser = useCallback((user) => {
+    props.actions.fetchUser(user);
   }, []);
 
   return (
@@ -32,13 +32,13 @@ const Header = (props) => {
           >
             {isLoading
               ? <div>loading...</div>
-              : userList.map(({ username, pk, index }) => (
-                <Link to={`/feed/${username}`} key={pk} onClick={() => fetchUser({ pk, username })}>
-                  {index}
+              : userList.map((user) => (
+                <Link to={`/feed/${user.username}`} key={user.pk} onClick={() => fetchUser(user)}>
+                  {user.index}
                   {' '}
                   /
                   {' '}
-                  {username}
+                  {user.username}
                 </Link>
               ))}
           </div>

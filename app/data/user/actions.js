@@ -7,11 +7,14 @@ export function initFetchUser(username) {
   };
 }
 
-export function fetchUser({ pk, username }) {
+export function fetchUser({ username, pk, ...rest }) {
   return {
     type: ActionTypes.FETCH_USER,
-    pk,
-    username,
+    payload: {
+      username,
+      pk,
+      ...rest,
+    },
   };
 }
 
@@ -27,5 +30,32 @@ export function successFetchUser({ userInfo, hasStory }) {
     type: ActionTypes.SUCCESS_FETCH_USER,
     userInfo,
     hasStory,
+  };
+}
+
+export function fetchMoreFeeds({ pk, endCursor }) {
+  return {
+    type: ActionTypes.FETCH_MORE_FEEDS,
+    pk,
+    endCursor,
+  };
+}
+
+export function requestFetchMoreFeeds() {
+  return {
+    type: ActionTypes.REQUEST_FETCH_MORE_FEEDS,
+  };
+}
+
+export function successFetchMoreFeeds({ userInfo }) {
+  return {
+    type: ActionTypes.SUCCESS_FETCH_MORE_FEEDS,
+    userInfo,
+  };
+}
+
+export function failureFetchMoreFeeds() {
+  return {
+    type: ActionTypes.FAILURE_FETCH_MORE_FEEDS,
   };
 }

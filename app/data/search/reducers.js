@@ -10,7 +10,7 @@ function searchingUser(state = '', action = {}) {
       return '';
     }
     case ActionTypes.FETCH_USER: {
-      return action.username;
+      return action.payload.username;
     }
     default:
       return state;
