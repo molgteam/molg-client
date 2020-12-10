@@ -1,2 +1,3 @@
 export * from './search/services';
-export * from './user/services';
+export * from './feed/services';
+export * from './story/services';

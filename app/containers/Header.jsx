@@ -10,6 +10,7 @@ const Header = (props) => {
   const { isLoading, userList } = result;
 
   const fetchUser = useCallback((user) => {
+    console.log(user);
     props.actions.fetchUser(user);
   }, []);
 

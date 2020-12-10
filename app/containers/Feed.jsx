@@ -5,12 +5,13 @@ import * as actions from '@app/data/rootAction';
 import { API } from '@app/constants/STATUS';
 
 const Feed = (props) => {
-  const { match, search, user } = props;
+  const {
+    match, search, user, feed,
+  } = props;
   const { params } = match;
   const { searchingUser } = search;
-  const {
-    status, info, feedInfo, pageInfo,
-  } = user;
+  const { state, nodes, pageInfo } = feed;
+  const { info } = user;
 
   useEffect(() => {
     if (!searchingUser.length) {
@@ -22,16 +23,16 @@ const Feed = (props) => {
     props.actions.fetchMoreFeeds({ pk: info.pk, endCursor: pageInfo.endCursor });
   });
 
-  if (status === API.REQUEST) {
+  if (state.status === API.REQUEST) {
     return <div>loading...</div>;
   }
 
-  return status === API.SUCCESS
+  return state.status === API.SUCCESS
     ? (
       <div>
         <p>{info.username}</p>
         <div>
-          {feedInfo.feedList.map((f, i) => (
+          {nodes.map((f, i) => (
             <div key={i}>
               <span>
                 {i}
