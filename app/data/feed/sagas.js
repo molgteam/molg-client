@@ -37,6 +37,9 @@ function* watchFetchUserFeed() {
   });
 }
 
+/**
+ * @description 유저 피드 더 불러오기
+ */
 function* watchFetchMoreFeeds() {
   yield takeEvery(ActionTypes.FETCH_MORE_FEEDS, function* ({ pk, endCursor }) {
     yield put(actions.requestFetchMoreFeeds());

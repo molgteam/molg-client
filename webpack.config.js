@@ -74,7 +74,7 @@ module.exports = {
     stats: 'errors-only',
     historyApiFallback: true,
     proxy: {
-      '/story': {
+      '/test': {
         target: config.get('backend'),
         changeOrigin: true,
       },

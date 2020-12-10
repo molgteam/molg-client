@@ -5,24 +5,28 @@ import {
 } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as action from '@app/data/rootAction';
-import history from '@modules/history';
 import Home from '@app/containers/Home';
+import Header from '@app/containers/Header';
+import Feed from '@app/containers/Feed';
+import RecommendFeed from '@app/containers/RecommendFeed';
+import Story from '@app/containers/Story';
 import NotFound from '@app/components/NotFound';
-import Header from './Header';
-import Feed from './Feed';
-import RecommendFeed from './RecommendFeed';
+import ContentLink from '@app/components/ContentLink';
 
 const App = (props) => {
   useEffect(() => {
     console.log('로그인 인증할 때 사용할 예정', props);
   }, []);
+
   return (
-    <Router history={history}>
+    <Router>
       <Header />
+      <ContentLink {...props} />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/feed" component={RecommendFeed} />
         <Route path="/feed/:username" component={Feed} />
+        <Route path="/story/:username" component={Story} />
         <Route component={NotFound} />
       </Switch>
       <footer>footer</footer>

@@ -5,7 +5,7 @@
  */
 export function parseUrl(url = '') {
   const [, protocol, scheme, , host, pathname, search = '', , hash = ''] = url.match(
-    /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/
+    /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/,
   );
   const [hostname, port = scheme === 'https' ? 443 : 80] = host.split(':');
   const origin = `${protocol}//${host}`;

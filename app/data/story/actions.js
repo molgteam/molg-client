@@ -6,15 +6,16 @@ export function requestHasStory() {
   };
 }
 
-export function successHasStory(hasStory) {
+export function successHasStory({ hasStory }) {
   return {
     type: ActionTypes.SUCCESS_HAS_STORY,
     hasStory,
   };
 }
 
-export function failureHasStory() {
+export function failureHasStory({ error }) {
   return {
     type: ActionTypes.FAILURE_HAS_STORY,
+    error,
   };
 }

@@ -26,10 +26,10 @@ export function requestFetchMoreFeeds() {
   };
 }
 
-export function successFetchMoreFeeds({ userInfo }) {
+export function successFetchMoreFeeds(feedInfo) {
   return {
     type: ActionTypes.SUCCESS_FETCH_MORE_FEEDS,
-    userInfo,
+    ...feedInfo,
   };
 }
 

@@ -17,3 +17,11 @@ export function fetchUser({ username, pk, ...rest }) {
     },
   };
 }
+
+export function fetchMoreFeeds({ pk, endCursor }) {
+  return {
+    type: ActionTypes.FETCH_MORE_FEEDS,
+    endCursor,
+    pk,
+  };
+}

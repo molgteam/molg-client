@@ -33,6 +33,7 @@ const Feed = (props) => {
         <p>{info.username}</p>
         <div>
           {nodes.map((f, i) => (
+            // eslint-disable-next-line react/no-array-index-key
             <div key={i}>
               <span>
                 {i}
@@ -45,8 +46,8 @@ const Feed = (props) => {
         </div>
         <div>
           {pageInfo.hasNextPage
-            ? <button type="button" onClick={fetchMoreFeed}>더보기</button> : null}
-
+            ? <button type="button" onClick={fetchMoreFeed}>더보기</button>
+            : null}
         </div>
       </div>
     )
