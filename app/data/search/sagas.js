@@ -24,7 +24,7 @@ function* watchFetchUsername() {
         yield put(actions.successSearchUsername(refinedResponse));
       } catch (err) {
         console.log(err);
-        yield put(actions.failureSearchUsername('요청에 실패했습니다.'));
+        yield put(actions.failureSearchUsername('요청에 실패했습니다. 잠시 후 다시 시도해주세요.'));
       }
     } else {
       yield put(actions.successSearchUsername({ userList: [] }));

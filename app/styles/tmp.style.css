@@ -1,0 +1,42 @@
+.hero-body .logo {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  background-image: url('../../img/logo.png');
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: 400px 400px;
+}
+
+.inner-search .community-list {
+  margin-top: 30px;
+  min-height: 396px;
+  background: #fff;
+  border: solid 1px #e9eff4;
+}
+
+.community-list .community-header {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.community-header .community-title {
+  display: block;
+  padding: 17px 0 16px 20px;
+  line-height: 17px;
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* TODO: !important 제거 */
+.inner-list {
+  color: #3b4351 !important;
+}
+
+.card-subtitle {
+  height: 70px;
+  overflow-y: scroll;
+}

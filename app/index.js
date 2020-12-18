@@ -1,5 +1,6 @@
 import '@app/styles/wg.css';
 import '@app/styles/style.css';
+import '@app/styles/tmp.style.css';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';

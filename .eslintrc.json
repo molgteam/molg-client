@@ -23,7 +23,11 @@
     "func-names": "off",
     "camelcase": "off",
     "no-shadow": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "linebreak-style": ["off", "window"],
+    "jsx-a11y/control-has-associated-label": "off",
+    "no-nested-ternary": "off",
+    "react/destructuring-assignment": "off"
   },
   "parserOptions": {
     "ecmaFeatures": {

@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '@app/data/rootAction';
 import { API } from '@app/constants/STATUS';
+import { Link } from 'react-router-dom';
 
 const Feed = (props) => {
   const {
@@ -24,34 +25,90 @@ const Feed = (props) => {
   });
 
   if (state.status === API.REQUEST) {
-    return <div>loading...</div>;
+    return <div className="loading loading-lg" />;
   }
 
-  return state.status === API.SUCCESS
-    ? (
-      <div>
-        <p>{info.username}</p>
-        <div>
-          {nodes.map((f, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <div key={i}>
-              <span>
-                {i}
-                :
-                {' '}
-              </span>
-              <span>{f.id}</span>
+  console.log(pageInfo);
+
+  if (state.status === API.SUCCESS) {
+    return (
+      <div className="container">
+        <div className="docs-demo columns">
+          <div className="column col-12 col-xs-12">
+            <div className="panel">
+              <div className="panel-header text-center">
+                <figure className="avatar avatar-lg">
+                  <img src={info.profilePicUrl} alt={info.profilePicId} />
+                </figure>
+                <div className="panel-title h5 mt-10">{info.username}</div>
+                <div className="panel-subtitle">{info.fullName}</div>
+                <div className="panel-subtitle">게시물 120 / 팔로워 240 / 팔로잉 300 정보 없음</div>
+              </div>
+              <nav className="panel-nav">
+                <ul className="tab tab-block">
+                  <li className="tab-item active"><Link to={`/feed/${info.username}`}>피드</Link></li>
+                  <li className="tab-item"><Link to={`/story/${info.username}`}>스토리🔒</Link></li>
+                </ul>
+              </nav>
+              <div className="panel-body">
+                <div className="docs-demo columns">
+                  {
+                    nodes.map((node, index) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <div className="column col-4 col-xs-12" key={index}>
+                        <div className="card">
+                          <div className="card-image">
+                            <img
+                              className="img-responsive"
+                              src={node.thumbnailSrc}
+                              alt={node.thumbnailSrc}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = 'https://i.pinimg.com/originals/3c/40/44/3c404407879dfad72f02fd5a6b147e56.jpg';
+                                e.target.alt = 'error image';
+                              }}
+                            />
+                          </div>
+                          <div className="card-header">
+                            <div className="card-title h5">
+                              <span>
+                                like:
+                                {' '}
+                                {node.likeCount}
+                              </span>
+                              {' '}
+                              <span>
+                                comment:
+                                {' '}
+                                {node.commentCount}
+                              </span>
+                            </div>
+                            <div className="card-subtitle text-gray">
+                              {node.captions.join('\n')}
+                            </div>
+                          </div>
+                          <div className="card-footer">
+                            <a className="btn btn-primary" href="#cards">저장하기</a>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className="panel-footer">
+                {pageInfo.hasNextPage
+                  ? <button type="button" className="btn btn-primary btn-block" onClick={fetchMoreFeed}>더보기</button>
+                  : null}
+              </div>
             </div>
-          ))}
-        </div>
-        <div>
-          {pageInfo.hasNextPage
-            ? <button type="button" onClick={fetchMoreFeed}>더보기</button>
-            : null}
+          </div>
         </div>
       </div>
-    )
-    : <div>유저 정보를 불러오는데 실패하였습니다.</div>;
+    );
+  }
+
+  return <div>유저 정보를 불러오는데 실패하였습니다.</div>;
 };
 
 export default connect(

@@ -6,6 +6,10 @@
  */
 export function divideEnv(request, mockData) {
   if (process.env.NODE_ENV === 'development') {
+    if (Math.random() < 0.5) {
+      throw new Error('API FAILURE');
+    }
+
     return () => new Promise((resolve) => {
       resolve({ data: mockData });
     });

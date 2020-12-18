@@ -2,7 +2,7 @@
 /** 1. Change the default font family in all browsers (opinionated). 2. Correct the line height in all browsers. 3. Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS. */
 /* Document ========================================================================== */
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;900&display=swap');
 
 html {
   font-family: sans-serif; /* 1 */
@@ -281,7 +281,7 @@ template {
 
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 24px;
   letter-spacing: -0.08rem;
   line-height: 1.5;
   -webkit-tap-highlight-color: transparent;
@@ -290,7 +290,7 @@ html {
 body {
   background: #fff;
   color: #3b4351;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Noto Sans KR", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 16px;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;

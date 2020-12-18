@@ -21,9 +21,9 @@ export function successSearchUsername(data) {
   };
 }
 
-export function failureSearchUsername(errorMessage) {
+export function failureSearchUsername(error) {
   return {
     type: ActionTypes.FAILURE_SEARCH_USERNAME,
-    errorMessage,
+    error,
   };
 }
