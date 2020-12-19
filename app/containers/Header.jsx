@@ -2,14 +2,22 @@ import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '@app/data/rootAction';
+import useTargetEvent from '@app/hooks/useTargetEvent';
 
-const Header = () => {
-  const openSidebar = useCallback(() => { console.log('sidebar'); }, []);
+const Header = (props) => {
+  useTargetEvent(() => props.actions.hideSidebar(false), 'dimmed_sidebar');
   const updateProfile = useCallback(() => { console.log('updateProflie'); }, []);
+
   return (
     <header className="navbar">
       <section className="navbar-section">
-        <button type="button" className="btn btn-link" onClick={openSidebar}><i className="fas fa-bars" /></button>
+        <button
+          type="button"
+          className="btn btn-link"
+          onClick={() => props.actions.showSidebar(true)}
+        >
+          <i className="fas fa-bars" />
+        </button>
       </section>
       <section className="navbar-center">국내최고의 인스타그램 툴 - 몰쥐</section>
       <section className="navbar-section">

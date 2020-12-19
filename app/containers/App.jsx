@@ -14,6 +14,7 @@ import Story from '@app/containers/Story';
 import NotFound from '@app/components/NotFound';
 import FamousHashtags from '@app/components/FamousHashtags';
 import Footer from '@app/components/Footer';
+import Sidebar from '@app/components/Sidebar';
 
 const App = (props) => {
   useEffect(() => {
@@ -33,6 +34,7 @@ const App = (props) => {
         </Switch>
         <FamousHashtags />
         <Footer />
+        <Sidebar show={props.sidebar.show} />
       </Router>
     </ErrorBoundary>
   );

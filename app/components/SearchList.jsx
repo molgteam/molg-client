@@ -1,39 +1,37 @@
 import { API } from '@app/constants/STATUS';
 import toggle from '@app/hocs/toggle';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import SearchItem from './SearchItem';
 
 const EMPTY_USER = '찾는 유저가 없습니다.';
 
 const SearchList = (props) => {
   const { result, status } = props;
 
+  if (status === API.REQUEST) {
+    return <div className="loading loading-lg" />;
+  }
+
+  if (status === API.FAILURE) {
+    return <div className="error">{props.error}</div>;
+  }
+
+  if (!result.length) {
+    return <div className="empty">{EMPTY_USER}</div>;
+  }
+
   return (
     <div className="search-list">
       <ul>
-        {
-          status === API.REQUEST
-            ? <li className="inner-list loading loading-lg" />
-            : (status === API.SUCCESS && result.length
-              ? result.map((user) => (
-                <li key={user.pk}>
-                  <Link to={`/feed/${user.username}`} className="inner-list" onClick={() => props.fetchUser(user)}>
-                    <div className="img-wrapper">
-                      <img
-                        src={user.profilePicUrl}
-                        alt={user.username}
-                      />
-                    </div>
-                    <div className="user-wrapper">
-                      <strong>{user.username}</strong>
-                      <span>{user.fullName || ''}</span>
-                    </div>
-                  </Link>
-                </li>
-              ))
-              : <div>{EMPTY_USER}</div>
-            )
-        }
+        {status === API.SUCCESS
+          ? result.map((user) => (
+            <SearchItem
+              key={user.pk}
+              user={user}
+              fetchUser={props.fetchUser}
+            />
+          ))
+          : null}
       </ul>
     </div>
   );

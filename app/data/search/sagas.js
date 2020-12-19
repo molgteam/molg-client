@@ -5,6 +5,7 @@ import * as ActionTypes from '@app/data/rootAcionType';
 import * as actions from '@app/data/rootAction';
 import * as services from '@app/data/rootService';
 import * as refinery from '@app/data/rootRefinery';
+import { ERROR_MESSAGE } from '@app/constants/STATUS';
 
 function* watchUpdateUsername() {
   while (true) {
@@ -22,9 +23,8 @@ function* watchFetchUsername() {
         const response = yield call(services.getResult, username);
         const refinedResponse = refinery.refineUserList(response);
         yield put(actions.successSearchUsername(refinedResponse));
-      } catch (err) {
-        console.log(err);
-        yield put(actions.failureSearchUsername('요청에 실패했습니다. 잠시 후 다시 시도해주세요.'));
+      } catch {
+        yield put(actions.failureSearchUsername(ERROR_MESSAGE.SEARCH));
       }
     } else {
       yield put(actions.successSearchUsername({ userList: [] }));
