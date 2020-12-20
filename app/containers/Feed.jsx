@@ -7,16 +7,17 @@ import { Link } from 'react-router-dom';
 
 const Feed = (props) => {
   const {
-    match, search, user, feed,
+    match, user, feed,
   } = props;
   const { params } = match;
-  const { searchingUser } = search;
   const { state, nodes, pageInfo } = feed;
   const { info } = user;
 
   useEffect(() => {
-    if (!searchingUser.length) {
-      props.actions.initFetchUser(params.username);
+    if (!info.pk) {
+      props.actions.fetchUserPk(params.username);
+    } else {
+      props.actions.fetchUser(info);
     }
   }, []);
 
@@ -27,8 +28,6 @@ const Feed = (props) => {
   if (state.status === API.REQUEST) {
     return <div className="loading loading-lg" />;
   }
-
-  console.log(pageInfo);
 
   if (state.status === API.SUCCESS) {
     return (
@@ -46,8 +45,8 @@ const Feed = (props) => {
               </div>
               <nav className="panel-nav">
                 <ul className="tab tab-block">
-                  <li className="tab-item active"><Link to={`/feed/${info.username}`}>피드</Link></li>
-                  <li className="tab-item"><Link to={`/story/${info.username}`}>스토리🔒</Link></li>
+                  <li className="tab-item active"><Link to={`/fe/${info.username}`}>피드</Link></li>
+                  <li className="tab-item"><Link to={`/st/${info.username}`}>스토리🔒</Link></li>
                 </ul>
               </nav>
               <div className="panel-body">

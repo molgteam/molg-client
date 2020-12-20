@@ -7,18 +7,25 @@ import Notice from '@app/components/Notice';
 import FamousUsers from '@app/components/FamousUsers';
 import SearchWrapper from '@app/components/SearchWrapper';
 import Navigation from '@app/components/Navigation';
+import useMounted from '@app/hooks/useMounted';
 
 const Home = (props) => {
+  const { mounted } = useMounted();
   const [isOpen, setIsOpen] = useState(false);
   const { search } = props;
 
-  const fetchUser = useCallback((user) => {
-    props.actions.fetchUser(user);
-  }, []);
-
+  const updateIsOpen = useCallback((isOpen) => {
+    if (mounted.current) {
+      setIsOpen(isOpen);
+    }
+  }, [isOpen]);
   const updateUsername = useCallback((username) => {
     props.actions.updateUsername(username);
   }, [search.searchingUser]);
+  const storeUserInfo = useCallback((user) => {
+    setIsOpen(false);
+    props.actions.storeUserInfo(user);
+  }, []);
 
   return (
     <>
@@ -28,11 +35,11 @@ const Home = (props) => {
           <div className="logo" />
           <div className="inner-search">
             <SearchWrapper
-              setIsOpen={setIsOpen}
+              updateIsOpen={updateIsOpen}
               isOpen={isOpen}
               search={search}
               updateUsername={updateUsername}
-              fetchUser={fetchUser}
+              storeUserInfo={storeUserInfo}
             />
             <div className="community-list">
               <div className="community-header">

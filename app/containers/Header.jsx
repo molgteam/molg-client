@@ -5,7 +5,7 @@ import * as actions from '@app/data/rootAction';
 import useTargetEvent from '@app/hooks/useTargetEvent';
 
 const Header = (props) => {
-  useTargetEvent(() => props.actions.hideSidebar(false), 'dimmed_sidebar');
+  useTargetEvent({ inner: () => props.actions.hideSidebar(false) }, 'dimmed_sidebar');
   const updateProfile = useCallback(() => { console.log('updateProflie'); }, []);
 
   return (

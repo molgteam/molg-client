@@ -6,7 +6,7 @@ import SearchItem from './SearchItem';
 const EMPTY_USER = '찾는 유저가 없습니다.';
 
 const SearchList = (props) => {
-  const { result, status } = props;
+  const { result, status, storeUserInfo } = props;
 
   if (status === API.REQUEST) {
     return <div className="loading loading-lg" />;
@@ -28,7 +28,7 @@ const SearchList = (props) => {
             <SearchItem
               key={user.pk}
               user={user}
-              fetchUser={props.fetchUser}
+              storeUserInfo={storeUserInfo}
             />
           ))
           : null}

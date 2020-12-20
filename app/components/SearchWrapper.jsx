@@ -1,11 +1,17 @@
 import React from 'react';
 import SearchList from '@app/components/SearchList';
 import { API } from '@app/constants/STATUS';
+import useTargetEvent from '@app/hooks/useTargetEvent';
 
 const SearchWrapper = (props) => {
   const {
-    updateUsername, setIsOpen, search, isOpen, fetchUser,
+    updateUsername, updateIsOpen, search, isOpen, storeUserInfo,
   } = props;
+
+  useTargetEvent({
+    inner: () => updateIsOpen(true),
+    outer: () => updateIsOpen(false),
+  }, 'searchBar');
 
   return (
     <>
@@ -14,15 +20,13 @@ const SearchWrapper = (props) => {
         type="text"
         placeholder="유저명을 입력해주세요..."
         onChange={(e) => updateUsername(e.target.value)}
-        onFocus={() => setIsOpen(true)}
-        onBlur={() => setIsOpen(false)}
         value={search.searchingUser}
       />
       <SearchList
         {...search.state}
         show={isOpen && search.state.status !== API.INITIAL}
         result={search.result}
-        fetchUser={fetchUser}
+        storeUserInfo={storeUserInfo}
       />
     </>
   );

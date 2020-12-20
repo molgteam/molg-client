@@ -28,8 +28,8 @@ function searchingUser(state = '', action = {}) {
     case ActionTypes.RESET_USERNAME: {
       return '';
     }
-    case ActionTypes.FETCH_USER: {
-      return action.payload.username;
+    case ActionTypes.STORE_USER_INFO: {
+      return action.user.username;
     }
     default:
       return state;

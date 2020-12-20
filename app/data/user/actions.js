@@ -1,27 +1,15 @@
 import * as ActionTypes from '@app/data/rootAcionType';
 
-export function initFetchUser(username) {
+export function fetchUserPk(username) {
   return {
-    type: ActionTypes.INIT_FETCH_USER,
+    type: ActionTypes.FETCH_USER_PK,
     username,
   };
 }
 
-export function fetchUser({ username, pk, ...rest }) {
+export function storeUserInfo(user) {
   return {
-    type: ActionTypes.FETCH_USER,
-    payload: {
-      username,
-      pk,
-      ...rest,
-    },
-  };
-}
-
-export function fetchMoreFeeds({ pk, endCursor }) {
-  return {
-    type: ActionTypes.FETCH_MORE_FEEDS,
-    endCursor,
-    pk,
+    type: ActionTypes.STORE_USER_INFO,
+    user,
   };
 }

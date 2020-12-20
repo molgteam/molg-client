@@ -15,6 +15,9 @@ import NotFound from '@app/components/NotFound';
 import FamousHashtags from '@app/components/FamousHashtags';
 import Footer from '@app/components/Footer';
 import Sidebar from '@app/components/Sidebar';
+import FamousUsers from '@app/components/FamousUsers';
+import TextGenerator from '@app/components/TextGenerator';
+import Board from '@app/components/Board';
 
 const App = (props) => {
   useEffect(() => {
@@ -27,9 +30,12 @@ const App = (props) => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/feed" component={RecommendFeed} />
-          <Route path="/feed/:username" component={Feed} />
-          <Route path="/story/:username" component={Story} />
+          <Route exact path="/fe" component={RecommendFeed} />
+          <Route path="/fe/:username" component={Feed} />
+          <Route path="/st/:username" component={Story} />
+          <Route path="/fu" component={() => <FamousUsers isNav />} />
+          <Route path="/tg" component={TextGenerator} />
+          <Route path="/bo" component={Board} />
           <Route component={NotFound} />
         </Switch>
         <FamousHashtags />

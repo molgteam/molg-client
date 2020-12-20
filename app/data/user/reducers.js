@@ -12,18 +12,11 @@ const initialInfoState = {
   profilePicUrl: null,
   username: null,
 };
+
 function info(state = initialInfoState, action = {}) {
   switch (action.type) {
-    case ActionTypes.FETCH_USER: {
-      return { ...state, ...action.payload };
-    }
-    case ActionTypes.REQUEST_FETCH_USER: {
-      const { pk } = action;
-      return { ...state, pk };
-    }
-    case ActionTypes.SUCCESS_FETCH_USER: {
-      const { hasStory } = action;
-      return { ...state, hasStory };
+    case ActionTypes.STORE_USER_INFO: {
+      return { ...state, ...action.user };
     }
     default: {
       return state;

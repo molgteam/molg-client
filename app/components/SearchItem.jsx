@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SearchItem = ({ user, fetchUser }) => (
+const SearchItem = ({ user, storeUserInfo }) => (
   <li>
-    <Link to={`/feed/${user.username}`} className="inner-list" onClick={() => fetchUser(user)}>
+    <Link to={`/fe/${user.username}`} className="inner-list" onClick={() => storeUserInfo(user)}>
       <div className="img-wrapper">
         <img
           src={user.profilePicUrl}

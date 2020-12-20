@@ -7,15 +7,16 @@ import * as services from '@app/data/rootService';
 import * as refinery from '@app/data/rootRefinery';
 
 /**
- * @description url로 바로 입력하고 왔을 때 사용하는 함수
+ * @description user PK를 구한 뒤에 피드 정보를 가지고 온다.
  */
-function* watchInitFetchUser() {
-  yield takeEvery(ActionTypes.INIT_FETCH_USER, function* ({ username }) {
+function* watchFetchUserPk() {
+  yield takeEvery(ActionTypes.FETCH_USER_PK, function* ({ username }) {
     try {
       const response = yield call(services.getResult, username);
       const { userList } = refinery.refineUserList(response);
       const userInfo = userList.find((u) => u.username === username);
-      yield put(actions.fetchUser({ username, ...userInfo }));
+      yield put(actions.storeUserInfo({ ...userInfo, username }));
+      yield put(actions.fetchUser({ pk: userInfo.pk }));
     } catch (e) {
       console.log(e);
     }
@@ -23,5 +24,5 @@ function* watchInitFetchUser() {
 }
 
 export default function* userWatcher() {
-  yield all([fork(watchInitFetchUser)]);
+  yield all([fork(watchFetchUserPk)]);
 }
