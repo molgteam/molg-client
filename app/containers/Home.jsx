@@ -4,15 +4,16 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import * as actions from '@app/data/rootAction';
 import Notice from '@app/components/Notice';
-import FamousUsers from '@app/components/FamousUsers';
+import HotUsers from '@app/components/HotUsers';
 import SearchWrapper from '@app/components/SearchWrapper';
 import Navigation from '@app/components/Navigation';
 import useMounted from '@app/hooks/useMounted';
+import ActiveGlobalNavigation from '@app/components/ActiveGlobalNavigation';
 
 const Home = (props) => {
   const { mounted } = useMounted();
   const [isOpen, setIsOpen] = useState(false);
-  const { search } = props;
+  const { search, history, navigation } = props;
 
   const updateIsOpen = useCallback((isOpen) => {
     if (mounted.current) {
@@ -27,9 +28,14 @@ const Home = (props) => {
     props.actions.storeUserInfo(user);
   }, []);
 
+  console.log(props);
   return (
     <>
-      <Navigation className="sub-navbar" subclassName="sub-navbar-list" />
+      <ActiveGlobalNavigation
+        location={history.location}
+        setGlobalNavigation={props.actions.setGlobalNavigation}
+      />
+      <Navigation className="sub-navbar" subclassName="sub-navbar-list" active={navigation.global} />
       <div className="hero bg-gray">
         <div className="hero-body">
           <div className="logo" />
@@ -52,7 +58,7 @@ const Home = (props) => {
         </div>
       </div>
       <Notice />
-      <FamousUsers />
+      <HotUsers />
     </>
   );
 };

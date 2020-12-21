@@ -5,7 +5,7 @@ const FamousUsers = ({ isNav }) => (
   <>
     {isNav && <Navigation className="sub-navbar" subclassName="sub-navbar-list" activeIndex={1} />}
     <div className="container">
-      <h3 className="sectionTitle">인기유저</h3>
+      <h3 className="sectionTitle">급상승 유저</h3>
       <div className="columns">
         <div className="column col-4 col-xs-12">
           <div className="card">

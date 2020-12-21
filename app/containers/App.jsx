@@ -11,13 +11,14 @@ import Header from '@app/containers/Header';
 import Feed from '@app/containers/Feed';
 import RecommendFeed from '@app/containers/RecommendFeed';
 import Story from '@app/containers/Story';
+import FamousUsers from '@app/containers/FamousUsers';
+import TextGenerator from '@app/containers/TextGenerator';
+import Board from '@app/containers/Board';
 import NotFound from '@app/components/NotFound';
 import FamousHashtags from '@app/components/FamousHashtags';
 import Footer from '@app/components/Footer';
 import Sidebar from '@app/components/Sidebar';
-import FamousUsers from '@app/components/FamousUsers';
-import TextGenerator from '@app/components/TextGenerator';
-import Board from '@app/components/Board';
+import { ROUTE } from '@app/constants/NAVIGATION';
 
 const App = (props) => {
   useEffect(() => {
@@ -30,12 +31,12 @@ const App = (props) => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/fe" component={RecommendFeed} />
-          <Route path="/fe/:username" component={Feed} />
-          <Route path="/st/:username" component={Story} />
-          <Route path="/fu" component={() => <FamousUsers isNav />} />
-          <Route path="/tg" component={TextGenerator} />
-          <Route path="/bo" component={Board} />
+          <Route exact path={ROUTE.HOME} component={RecommendFeed} />
+          <Route path={`${ROUTE.FEED}/:username`} component={Feed} />
+          <Route path={`${ROUTE.STORY}/:username`} component={Story} />
+          <Route path={ROUTE.FAMOUS_USER} component={FamousUsers} />
+          <Route path={ROUTE.TEXT_GENERATOR} component={TextGenerator} />
+          <Route path={ROUTE.BOARD} component={Board} />
           <Route component={NotFound} />
         </Switch>
         <FamousHashtags />
