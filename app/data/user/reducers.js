@@ -18,6 +18,9 @@ function info(state = initialInfoState, action = {}) {
     case ActionTypes.STORE_USER_INFO: {
       return { ...state, ...action.user };
     }
+    case ActionTypes.SET_USERNAME: {
+      return { ...state, username: action.username };
+    }
     default: {
       return state;
     }

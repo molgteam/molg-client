@@ -2,7 +2,7 @@ import toggle from '@app/hocs/toggle';
 import React from 'react';
 import Navigation from './Navigation';
 
-const Sidebar = () => (
+const Sidebar = ({ hideSidebar }) => (
   <>
     <div className="sidebar-wrapper">
       <div className="inner-sidebar">
@@ -23,7 +23,7 @@ const Sidebar = () => (
             </a>
           </li>
         </ul>
-        <Navigation subclassName="list-navbar" />
+        <Navigation subclassName="list-navbar" hideSidebar={hideSidebar} />
       </div>
     </div>
     <div className="dimmed_sidebar" />

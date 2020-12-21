@@ -28,11 +28,7 @@ function* watchFetchUserFeed() {
         }),
       );
     } catch (error) {
-      yield put(
-        actions.failureFetchUserFeed({
-          error,
-        }),
-      );
+      yield put(actions.failureFetchUserFeed('해당 유저는 찾을 수 없습니다.'));
     }
   });
 }

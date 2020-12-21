@@ -30,29 +30,39 @@ const Feed = (props) => {
     return <div className="loading loading-lg" />;
   }
 
-  if (state.status === API.SUCCESS) {
-    return (
-      <>
-        <ActiveNavigation
-          location={history.location}
-          setNavigation={props.actions.setUserNavigation}
-        />
-        <div className="container">
-          <div className="docs-demo columns">
-            <div className="column col-12 col-xs-12">
-              <div className="panel">
-                <div className="panel-header text-center">
-                  <figure className="avatar avatar-lg">
-                    <img src={info.profilePicUrl} alt={info.profilePicId} />
-                  </figure>
-                  <div className="panel-title h5 mt-10">{info.username}</div>
-                  <div className="panel-subtitle">{info.fullName}</div>
-                  <div className="panel-subtitle">게시물 120 / 팔로워 240 / 팔로잉 300 정보 없음</div>
-                </div>
-                <UserNavigation activeTab={navigation.user} username={info.username} />
-                <div className="panel-body">
-                  <div className="docs-demo columns">
-                    {
+  if (state.status === API.FAILURE) {
+    return <div>{state.error}</div>;
+  }
+
+  return (
+    <>
+      <ActiveNavigation
+        location={history.location}
+        setNavigation={props.actions.setUserNavigation}
+      />
+      <div className="sub-navbar">
+        <div className="sub-navbar-list">
+          <div className="search-navbar">
+            <input type="text" className="searchBar" placeholder="유저명을 입력해주세요..." value={info.username} />
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="docs-demo columns">
+          <div className="column col-12 col-xs-12">
+            <div className="panel">
+              <div className="panel-header text-center">
+                <figure className="avatar avatar-lg">
+                  <img src={info.profilePicUrl} alt={info.profilePicId} />
+                </figure>
+                <div className="panel-title h5 mt-10">{info.username}</div>
+                <div className="panel-subtitle">{info.fullName}</div>
+                <div className="panel-subtitle">게시물 120 / 팔로워 240 / 팔로잉 300 정보 없음</div>
+              </div>
+              <UserNavigation activeTab={navigation.user} username={info.username} />
+              <div className="panel-body">
+                <div className="docs-demo columns">
+                  {
                     nodes.map((node, index) => (
                       // eslint-disable-next-line react/no-array-index-key
                       <div className="column col-4 col-xs-12" key={index}>
@@ -94,22 +104,19 @@ const Feed = (props) => {
                       </div>
                     ))
                   }
-                  </div>
                 </div>
-                <div className="panel-footer">
-                  {pageInfo.hasNextPage
-                    ? <button type="button" className="btn btn-primary btn-block" onClick={fetchMoreFeed}>더보기</button>
-                    : null}
-                </div>
+              </div>
+              <div className="panel-footer">
+                {pageInfo.hasNextPage
+                  ? <button type="button" className="btn btn-primary btn-block" onClick={fetchMoreFeed}>더보기</button>
+                  : null}
               </div>
             </div>
           </div>
         </div>
-      </>
-    );
-  }
-
-  return <div>유저 정보를 불러오는데 실패하였습니다.</div>;
+      </div>
+    </>
+  );
 };
 
 export default connect(

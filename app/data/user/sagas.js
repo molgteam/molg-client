@@ -15,8 +15,13 @@ function* watchFetchUserPk() {
       const response = yield call(services.getResult, username);
       const { userList } = refinery.refineUserList(response);
       const userInfo = userList.find((u) => u.username === username);
-      yield put(actions.storeUserInfo({ ...userInfo, username }));
-      yield put(actions.fetchUser({ pk: userInfo.pk }));
+
+      if (userInfo) {
+        yield put(actions.storeUserInfo({ ...userInfo, username }));
+        yield put(actions.fetchUser({ pk: userInfo.pk }));
+      } else {
+        yield put(actions.failureFetchUserFeed('해당 유저는 찾을 수 없습니다.'));
+      }
     } catch (e) {
       console.log(e);
     }

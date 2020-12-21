@@ -13,3 +13,10 @@ export function storeUserInfo(user) {
     user,
   };
 }
+
+export function setUsername(username) {
+  return {
+    type: ActionTypes.SET_USERNAME,
+    username,
+  };
+}

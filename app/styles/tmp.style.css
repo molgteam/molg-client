@@ -51,3 +51,8 @@
   border-right: 1px solid #d2d2d2;
   border-bottom: 1px solid #d2d2d2;
 }
+
+/* TODO: 임의로 높이 값 맞춤. 수정 필요함 */
+.search-navbar {
+  height: 60px;
+}

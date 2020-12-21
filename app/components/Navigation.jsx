@@ -5,20 +5,22 @@ import {
   HOME, FAMOUS_USER, TEXT_GENERATOR, BOARD, ROUTE,
 } from '@app/constants/NAVIGATION';
 
-const Navigation = ({ className = '', subclassName = '', activeTab = '/' }) => (
+const Navigation = ({
+  className = '', subclassName = '', activeTab = '/', hideSidebar = () => {},
+}) => (
   <div className={className}>
     <ul className={subclassName}>
       <li className={classnames({ active: activeTab === ROUTE.HOME })}>
-        <Link to="/" className="link-group">{HOME}</Link>
+        <Link to="/" className="link-group" onClick={() => hideSidebar(false)}>{HOME}</Link>
       </li>
       <li className={classnames({ active: activeTab === ROUTE.FAMOUS_USER })}>
-        <Link to="/fu" className="link-group">{FAMOUS_USER}</Link>
+        <Link to="/fu" className="link-group" onClick={() => hideSidebar(false)}>{FAMOUS_USER}</Link>
       </li>
       <li className={classnames({ active: activeTab === ROUTE.TEXT_GENERATOR })}>
-        <Link to="/tg" className="link-group">{TEXT_GENERATOR}</Link>
+        <Link to="/tg" className="link-group" onClick={() => hideSidebar(false)}>{TEXT_GENERATOR}</Link>
       </li>
       <li className={classnames({ active: activeTab === ROUTE.BOARD })}>
-        <Link to="/bo" className="link-group">{BOARD}</Link>
+        <Link to="/bo" className="link-group" onClick={() => hideSidebar(false)}>{BOARD}</Link>
       </li>
     </ul>
   </div>

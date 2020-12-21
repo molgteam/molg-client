@@ -41,7 +41,7 @@ const App = (props) => {
         </Switch>
         <FamousHashtags />
         <Footer />
-        <Sidebar show={props.sidebar.show} />
+        <Sidebar show={props.sidebar.show} hideSidebar={props.actions.hideSidebar} />
       </Router>
     </ErrorBoundary>
   );
