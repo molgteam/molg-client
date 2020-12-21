@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '@app/data/rootAction';
 import Navigation from '@app/components/Navigation';
-import ActiveGlobalNavigation from '@app/components/ActiveGlobalNavigation';
+import ActiveNavigation from '@app/components/ActiveNavigation';
 
 const Board = (props) => {
   const { history, navigation } = props;
 
   return (
     <>
-      <ActiveGlobalNavigation
+      <ActiveNavigation
         location={history.location}
-        setGlobalNavigation={props.actions.setGlobalNavigation}
+        setNavigation={props.actions.setGlobalNavigation}
       />
       <Navigation className="sub-navbar" subclassName="sub-navbar-list" activeTab={navigation.global} />
       <div>Board page</div>

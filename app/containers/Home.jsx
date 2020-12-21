@@ -8,7 +8,7 @@ import HotUsers from '@app/components/HotUsers';
 import SearchWrapper from '@app/components/SearchWrapper';
 import Navigation from '@app/components/Navigation';
 import useMounted from '@app/hooks/useMounted';
-import ActiveGlobalNavigation from '@app/components/ActiveGlobalNavigation';
+import ActiveNavigation from '@app/components/ActiveNavigation';
 
 const Home = (props) => {
   const { mounted } = useMounted();
@@ -28,14 +28,13 @@ const Home = (props) => {
     props.actions.storeUserInfo(user);
   }, []);
 
-  console.log(props);
   return (
     <>
-      <ActiveGlobalNavigation
+      <ActiveNavigation
         location={history.location}
-        setGlobalNavigation={props.actions.setGlobalNavigation}
+        setNavigation={props.actions.setGlobalNavigation}
       />
-      <Navigation className="sub-navbar" subclassName="sub-navbar-list" active={navigation.global} />
+      <Navigation className="sub-navbar" subclassName="sub-navbar-list" activeTab={navigation.global} />
       <div className="hero bg-gray">
         <div className="hero-body">
           <div className="logo" />

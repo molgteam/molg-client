@@ -12,4 +12,15 @@ function global(state = '', action = {}) {
   }
 }
 
-export default combineReducers({ global });
+function user(state = '', action = {}) {
+  switch (action.type) {
+    case ActionTypes.SET_USER_NAVIGATION: {
+      return action.pathname;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+export default combineReducers({ global, user });

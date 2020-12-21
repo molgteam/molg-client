@@ -6,3 +6,10 @@ export function setGlobalNavigation(pathname) {
     pathname,
   };
 }
+
+export function setUserNavigation(pathname) {
+  return {
+    type: ActionTypes.SET_USER_NAVIGATION,
+    pathname,
+  };
+}
